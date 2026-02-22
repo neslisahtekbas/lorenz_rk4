@@ -6,7 +6,7 @@ function lorenz_rk4
     rho   = 28;
 
     T_bitis = 50;     % Simülasyon süresi
-    dt = 0.005;       % Adım aralığı (RK4 için 0.01 bile yeterlidir ama 0.005 çok hassastır)
+    dt = 0.005;       % Adım aralığı (RK4 için 0.01 bile yeterlidir ama 0.005 çok hassas hesaplama yapmamızı sağlar)
     N = floor(T_bitis / dt); % Adım sayısı
 
     altin_rengi = [0.85, 0.65, 0.15];
@@ -22,7 +22,7 @@ function lorenz_rk4
     z(1) = 1;
 
     % --- 3. Runge-Kutta 4 Döngüsü ---
-    % Bu döngü RK4'ün kalbidir. Her adımda 4 eğim hesabı yapılır.
+    % Bu döngüdeki her adımda 4 eğim hesabı yapılır.
     for i = 1 : N-1
         % Mevcut durum
         xi = x(i); yi = y(i); zi = z(i);
@@ -61,10 +61,10 @@ function lorenz_rk4
 end
 
 % --- YARDIMCI FONKSİYON: Lorenz Türevleri ---
-% Bu fonksiyon, ana döngünün içini temiz tutmak için sadece
-% o anki noktadaki dx, dy, dz değerlerini hesaplar.
+% Bu fonksiyon, ana döngünün içini temiz tutmak için sadece o anki noktadaki dx, dy, dz değerlerini hesaplar.
 function [dx, dy, dz] = lorenz_turevleri(x, y, z, s, b, r)
     dx = s * (y - x);
     dy = x * (r - z) - y;
     dz = x * y - b * z;
+
 end
