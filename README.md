@@ -1,6 +1,6 @@
 # 3D Simulation of the Lorenz System using Runge-Kutta 4 (RK4)
 
-This project contains Phyton and MATLAB implementations for the numerical solution and visualization of the **Lorenz System**, an advanced model in chaos theory and dynamical systems.
+This project contains Python and MATLAB implementations for the numerical solution and visualization of the **Lorenz System**, an advanced model in chaos theory and dynamical systems.
 
 ## 📌 Project Overview
 The simulation investigates the sensitive dependence on initial conditions and the formation of the "Lorenz Attractor." The system is defined by the following set of nonlinear ordinary differential equations (ODEs):
