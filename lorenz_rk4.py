@@ -43,8 +43,8 @@ ax.grid(False)
 ax.axis('off') 
 
 # Çizgi ve nokta nesneleri
-line, = ax.plot([], [], [], lw=1.5, color='#FFD700')
-point, = ax.plot([], [], [], 'o', color='white')
+line, = ax.plot([], [], [], linestyle='-', lw=1.75, marker='.', markersize=5.5, color='#FFD700', alpha=0.9)
+point, = ax.plot([], [], [], marker='o', color='white', markersize=9)
 
 # Başlangıç fonksiyonu 
 def init():
