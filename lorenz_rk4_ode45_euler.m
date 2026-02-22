@@ -7,18 +7,16 @@ function lorenz_karsilastirma
     N = floor(t_son / dt);
     baslangic = [1; 1; 1];
 
-    % --- 2. HESAPLAMALAR ---
     
     % A) ODE45
     options = odeset('RelTol',1e-8, 'AbsTol',1e-8);
     [t_ode, sonuc_ode] = ode45(@(t,y) lorenz_func(t,y,sigma,beta,rho), [0 t_son], baslangic, options);
-    
-    % *** DÜZELTME 1: Değişkenleri burada tanımlıyoruz ***
+   
     x_ode = sonuc_ode(:,1); 
     y_ode = sonuc_ode(:,2); 
     z_ode = sonuc_ode(:,3);
 
-    % B) Euler Metodu
+    % B) Euler 
     xe = zeros(N,1); ye = zeros(N,1); ze = zeros(N,1);
     xe(1)=baslangic(1); ye(1)=baslangic(2); ze(1)=baslangic(3);
     for i=1:N-1
@@ -28,7 +26,7 @@ function lorenz_karsilastirma
         xe(i+1) = xe(i) + dx*dt; ye(i+1) = ye(i) + dy*dt; ze(i+1) = ze(i) + dz*dt;
     end
 
-    % C) RK4 Metodu
+    % C) RK4 
     xr = zeros(N,1); yr = zeros(N,1); zr = zeros(N,1);
     xr(1)=baslangic(1); yr(1)=baslangic(2); zr(1)=baslangic(3);
     for i=1:N-1
@@ -42,14 +40,12 @@ function lorenz_karsilastirma
         zr(i+1) = zi + (dt/6)*(k1z+2*k2z+2*k3z+k4z);
     end
 
-    % --- 3. GÖRSELLEŞTİRME  ---
     fig = figure('Color','w');
     set(fig, 'Position', [0, 0, 1400, 800]); 
     movegui(fig, 'center');
 
     t_man = (0:N-1)*dt; 
-    
-    % SOL TARAFI KAPLAYAN BÜYÜK 3D GRAFİK
+
     subplot(3, 2, [1, 3, 5]); 
     plot3(x_ode, y_ode, z_ode, 'b', 'LineWidth', 2.5); hold on;
     plot3(xr, yr, zr, 'Color', [0.85, 0.65, 0.15], 'LineWidth', 2, 'LineStyle','--');
@@ -59,21 +55,21 @@ function lorenz_karsilastirma
     legend('ODE45', 'RK4', 'Euler', 'Location', 'northwest');
     grid on; view(45, 20); axis equal;
 
-    % SAĞ ÜST (X Zaman Serisi) -> 2. Kutu
+    % X Zaman Serisi
     subplot(3, 2, 2);
     plot(t_ode, x_ode, 'b', 'LineWidth', 1.5); hold on;
     plot(t_man, xr, 'Color', [0.85, 0.65, 0.15], 'LineWidth', 1.5, 'LineStyle','--');
     plot(t_man, xe, 'r', 'LineWidth', 1.5, 'LineStyle', ':');
     title('x - Time Graph'); ylabel('x axis'); grid on; xlim([0 15]);
 
-    % SAĞ ORTA (Y Zaman Serisi) -> 4. Kutu
+    % Y Zaman Serisi
     subplot(3, 2, 4);
     plot(t_ode, y_ode, 'b', 'LineWidth', 1.5); hold on;
     plot(t_man, yr, 'Color', [0.85, 0.65, 0.15], 'LineWidth', 1.5, 'LineStyle','--');
     plot(t_man, ye, 'r', 'LineWidth', 1.5, 'LineStyle', ':');
     title('y - Time Graph'); ylabel('y axis'); grid on; xlim([0 15]);
 
-    % SAĞ ALT (Z Zaman Serisi) -> 6. Kutu
+    % Z Zaman Serisi
     subplot(3, 2, 6);
     plot(t_ode, z_ode, 'b', 'LineWidth', 1.5); hold on;
     plot(t_man, zr, 'Color', [0.85, 0.65, 0.15], 'LineWidth', 1.5, 'LineStyle','--');
@@ -81,7 +77,6 @@ function lorenz_karsilastirma
     title('z - Time Graph'); xlabel('Time (t)'); ylabel('z axis'); grid on; xlim([0 15]);
 end
 
-% --- YARDIMCI FONKSİYONLAR ---
 function dydt = lorenz_func(~, y, s, b, r)
     dydt = [s*(y(2)-y(1)); y(1)*(r-y(3))-y(2); y(1)*y(2)-b*y(3)];
 end
@@ -90,4 +85,5 @@ function [dx, dy, dz] = lorenz_vals(x, y, z, s, b, r)
     dx = s * (y - x);
     dy = x * (r - z) - y;
     dz = x * y - b * z;
+
 end
