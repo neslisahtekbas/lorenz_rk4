@@ -1,13 +1,13 @@
 sigma = 10;
 beta  = 8/3;
-rho   = 28; # 0.5, 1, 13.926, 24.06, 24.736, 28, 30
+rho   = 28;  % Try 0.5, 1, 13.926, 24.06, 24.736, 28, 30
 
 fprintf('--------------------------------------------------\n');
 fprintf('LORENZ SYSTEM STABILITY ANALYSIS (rho = %.3f)\n', rho);
 fprintf('sigma = %.2f, beta = %.4f\n', sigma, beta);
 fprintf('--------------------------------------------------\n\n');
 
-% Charasteristic Equation: (lambda + beta) * (lambda^2 + (sigma+1)lambda + sigma(1-rho)) = 0
+% Charasteristic Equation: (lambda + beta) * (lambda^2 + (sigma+1)lambda + sigma(1-rho)) = 0 
 
 fprintf('--- 1. ORIJIN (0,0,0) ---\n');
 
@@ -88,4 +88,5 @@ else
     fprintf('These fixed points do not exist because of rho < 1.\n');
 end
 fprintf('--------------------------------------------------\n');
+
 
