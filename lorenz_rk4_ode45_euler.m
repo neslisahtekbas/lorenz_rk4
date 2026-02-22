@@ -1,4 +1,4 @@
-function lorenz_karsilastirma
+function lorenz_rk4_ode45_euler
     clc; close all;
 
     sigma = 10; beta = 8/3; rho = 28;
@@ -87,3 +87,4 @@ function [dx, dy, dz] = lorenz_vals(x, y, z, s, b, r)
     dz = x * y - b * z;
 
 end
+
