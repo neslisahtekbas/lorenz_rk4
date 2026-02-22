@@ -1,6 +1,6 @@
 sigma = 10;
 beta  = 8/3;
-rho   = 13.926;
+rho   = 28; # 0.5, 1, 13.926, 24.06, 24.736, 28, 30
 
 fprintf('--------------------------------------------------\n');
 fprintf('LORENZ SYSTEM STABILITY ANALYSIS (rho = %.3f)\n', rho);
@@ -88,3 +88,4 @@ else
     fprintf('These fixed points do not exist because of rho < 1.\n');
 end
 fprintf('--------------------------------------------------\n');
+
