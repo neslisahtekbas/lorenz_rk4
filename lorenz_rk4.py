@@ -84,7 +84,7 @@ def update(frame):
     return line, point
 
 # Animasyonu oluştur
-ani = animation.FuncAnimation(fig, update, frames=total_frames + 1, init_func=init, 
-                              interval=interval_ms, blit=False)
+ani = animation.FuncAnimation(fig, update, frames=total_frames + 1, init_func=init, interval=interval_ms, blit=False)
+
 
 plt.show()
